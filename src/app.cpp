@@ -5,6 +5,7 @@
 App::App() {
     this->msg = { 0 };
     this->uxt = LoadLibraryExW(L"uxtheme.dll", NULL, LOAD_LIBRARY_SEARCH_SYSTEM32 | LOAD_IGNORE_CODE_AUTHZ_LEVEL);
+#ifdef _DEBUG
 	if (1) {
 		// Attach Console
         if (!AttachConsole(ATTACH_PARENT_PROCESS)) {
@@ -12,6 +13,7 @@ App::App() {
                 AllocConsole();
         }
 	}
+#endif
 	this->running = false;
 #ifdef _MSC_VER
 	SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2);

@@ -7,7 +7,7 @@ static void main_func() {
 	delete app;
 }
 
-#if 1
+#ifdef _DEBUG
 int main(int argc, char* argv[]) {
 	UNUSED(argc);
 	UNUSED(argv);
