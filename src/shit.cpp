@@ -49,7 +49,7 @@ void fix_cleanup() {
 static HTHEME g_menuTheme = nullptr;
 
 // ugly colors for illustration purposes
-static HBRUSH g_brBarBackground = CreateSolidBrush(RGB(32, 32, 32));
+static HBRUSH g_brBarBackground = CreateSolidBrush(RGB(43, 43, 43));
 
 void UAHDrawMenuNCBottomLine(HWND hWnd)
 {
@@ -110,9 +110,9 @@ bool UAHWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam, LRESULT* 
         UAHDRAWMENUITEM* pUDMI = (UAHDRAWMENUITEM*)lParam;
 
         // ugly colors for illustration purposes
-        static HBRUSH g_brItemBackground = CreateSolidBrush(RGB(32, 32, 32));
-        static HBRUSH g_brItemBackgroundHot = CreateSolidBrush(RGB(64, 64, 64));
-        static HBRUSH g_brItemBackgroundSelected = CreateSolidBrush(RGB(64, 64, 64));
+        static HBRUSH g_brItemBackground = CreateSolidBrush(RGB(43, 43, 43));
+        static HBRUSH g_brItemBackgroundHot = CreateSolidBrush(RGB(53, 53, 53));
+        static HBRUSH g_brItemBackgroundSelected = CreateSolidBrush(RGB(53, 53, 53));
 
         HBRUSH* pbrBackground = &g_brItemBackground;
 
@@ -169,7 +169,10 @@ bool UAHWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam, LRESULT* 
         FillRect(pUDMI->um.hdc, &pUDMI->dis.rcItem, *pbrBackground);
 
 #ifdef _MSC_VER
-        DTTOPTS opts = { sizeof(opts), DTT_TEXTCOLOR, iTextStateID != MPI_DISABLED ? RGB(255, 255, 255) : RGB(0x40, 0x40, 0x40) };
+        DTTOPTS opts = {
+            sizeof(opts), DTT_TEXTCOLOR,
+            (GetForegroundWindow() == hWnd) ? (iTextStateID != MPI_DISABLED ? RGB(255, 255, 255) : RGB(0x40, 0x40, 0x40)) : RGB(128, 128, 128)
+        };
         DrawThemeTextEx(g_menuTheme, pUDMI->um.hdc, MENU_BARITEM, MBI_NORMAL, menuString, mii.cch, dwFlags, &pUDMI->dis.rcItem, &opts);
 #endif
 
