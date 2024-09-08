@@ -152,13 +152,11 @@ Window::Window(App* _app) {
 	this->fnt = CreateFontW(48, 0, 0, 0, 0, 0, 0, 0, DEFAULT_CHARSET, OUT_OUTLINE_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, 0, L"Segoe UI");
 	SendMessageW(this->btn, WM_SETFONT, (WPARAM)this->fnt, MAKELPARAM(TRUE, 0));
 	win_shit.AllowDarkModeForWindow(this->btn, true);
-	win_shit.AllowDarkModeForWindow((HWND)menu_bar, true);
 
 	SetWindowTheme(this->btn, L"Explorer", NULL);
 
 	SendMessageW(this->hwnd, WM_THEMECHANGED, 0, 0);
 	SendMessageW(this->btn, WM_THEMECHANGED, 0, 0);
-	SendMessageW((HWND)menu_bar, WM_THEMECHANGED, 0, 0);
 	ShowWindow(this->hwnd, 1);
 }
 
